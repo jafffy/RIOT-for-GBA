@@ -1,0 +1,44 @@
+# Copyright (c) 2020 HAW Hamburg
+#
+# This file is subject to the terms and conditions of the GNU Lesser
+# General Public License v2.1. See the file LICENSE in the top level
+# directory for more details.
+#
+
+config CPU_FAM_ARM7TDMI
+    bool
+    select CPU_CORE_ARM7TDMI_S
+    select HAS_BACKUP_RAM
+    select HAS_CPU_ARM7TDMI
+    select HAS_PERIPH_DAC
+    select HAS_PERIPH_FLASHPAGE
+    select HAS_PERIPH_GPIO
+    select HAS_PERIPH_GPIO_IRQ
+    select HAS_PERIPH_TIMER_PERIODIC
+    select HAS_PERIPH_RTC_MS
+
+    select MODULE_BITFIELD if TEST_KCONFIG
+
+## CPU Models
+config CPU_MODEL_ARM7TDMI
+    bool
+    select CPU_FAM_ARM7TDMI
+
+## Declaration of specific features
+config HAS_CPU_ARM7TDMI
+    bool
+    help
+        Indicates that an 'arm7tdmi' cpu is being used.
+
+## Common CPU symbols
+config CPU_FAM
+    default "arm7tdmi" if CPU_FAM_ARM7TDMI
+
+config CPU_MODEL
+    default "arm7tdmi" if CPU_MODEL_ARM7TDMI
+
+config CPU
+    default "arm7tdmi" if CPU_FAM_ARM7TDMI
+
+rsource "mci/Kconfig"
+source "$(RIOTCPU)/arm7_common/Kconfig"

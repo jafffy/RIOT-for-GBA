@@ -1,0 +1,5 @@
+INCLUDES += -I$(RIOTBOARD)/common/gameboyadvance/include
+
+OPENOCD_CONFIG ?= $(RIOTBOARD)/common/gameboyadvance/dist/openocd.cfg
+
+include $(RIOTMAKE)/boards/sam0.inc.mk
